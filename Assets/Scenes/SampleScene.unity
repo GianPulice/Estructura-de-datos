@@ -354,12 +354,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cellPrefab: {fileID: 7774200677928076142, guid: 0eea0317a27dbd94fb756f6206f20ab0, type: 3}
   enemyPrefab: {fileID: 3618780671453172108, guid: 6a51ec78fc858954e98c0efb52365535, type: 3}
+  itemPrefab: {fileID: 781656828095517831, guid: 24af229385cec8f4f86e664ad7fded62, type: 3}
+  playerController: {fileID: 2100614408}
   gridWidth: 20
   gridHeight: 10
   cellSize: 1
   enemyZOffset: 10
+  itemZOffset: 5
   enemys: 40
+  items: 5
+  itemPositions: []
   enemyPositions: []
+  itemIds: 
 --- !u!4 &1137782063
 Transform:
   m_ObjectHideFlags: 0

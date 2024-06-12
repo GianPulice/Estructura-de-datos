@@ -9,16 +9,12 @@ public class C_Movement : MonoBehaviour
 
     public void MoveTo(Vector2Int targetPosition)
     {
-        if (!GameManager.Instance.gridManager.enemyPositions.Contains(targetPosition))
+        List<Vector2Int> path = GameManager.Instance.FindPath(currentGridPosition, targetPosition);
+        if (path.Count > 0)
         {
-            List<Vector2Int> path = GameManager.Instance.FindPath(currentGridPosition, targetPosition);
-            if (path.Count > 0)
-            {
-                StartCoroutine(MoveAlongPath(path));
-                currentGridPosition = targetPosition;
-            }
+            StartCoroutine(MoveAlongPath(path));
+            currentGridPosition = targetPosition;
         }
-  
     }
 
     private IEnumerator MoveAlongPath(List<Vector2Int> path)

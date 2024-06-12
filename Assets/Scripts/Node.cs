@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Node
+public class Node 
 {
     public Vector2Int Position { get; set; }
     public List<Node> Neighbors { get; set; }
