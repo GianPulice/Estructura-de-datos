@@ -13,7 +13,7 @@ public class GridManager : MonoBehaviour
     public int gridHeight = 10;
     public float cellSize = 1.0f;
     public float enemyZOffset = 10f;
-    public float itemZOffset = 10f;  
+    public float itemZOffset = 10f;
     public int enemys;
     public int items;
     public List<Vector2Int> itemPositions;
@@ -103,12 +103,12 @@ public class GridManager : MonoBehaviour
                 GameObject item = Instantiate(itemPrefab, itemPosition, Quaternion.identity);
                 int itemId = GenerateItemId();
                 item.GetComponent<Item>().itemId = itemId;
-                item.GetComponent<Item>().SetColorByItemId(itemId); 
+                item.GetComponent<Item>().SetColorByItemId(itemId);
                 itemPositions.Add(randomPosition);
             }
             else
             {
-                i--; 
+                i--;
             }
         }
     }
@@ -127,8 +127,20 @@ public class GridManager : MonoBehaviour
 
     int GenerateItemId()
     {
-       
-        return Random.Range(0, 6);
+        return Random.Range(0, 7); 
+    }
+
+    public GameObject GetItemGameObjectAtPosition(Vector2Int position)
+    {
+        foreach (Transform child in transform)
+        {
+            Item item = child.GetComponent<Item>();
+            if (item != null && item.transform.position == new Vector3(position.x * cellSize, position.y * cellSize, -itemZOffset))
+            {
+                return item.gameObject;
+            }
+        }
+        return null;
     }
 }
 

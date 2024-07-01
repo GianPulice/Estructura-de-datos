@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class C_Movement : MonoBehaviour
 {
+
     public float speed = 5f;
     public Vector2Int currentGridPosition;
 
     public void MoveTo(Vector2Int targetPosition)
     {
-        List<Vector2Int> path = GameManager.Instance.FindPath(currentGridPosition, targetPosition);
-        if (path.Count > 0)
+        if (!GameManager.Instance.gridManager.enemyPositions.Contains(targetPosition))
         {
-            StartCoroutine(MoveAlongPath(path));
-            currentGridPosition = targetPosition;
+            List<Vector2Int> path = GameManager.Instance.FindPath(currentGridPosition, targetPosition);
+            if (path.Count > 0)
+            {
+                StartCoroutine(MoveAlongPath(path));
+                currentGridPosition = targetPosition;
+                CheckForItemAtPosition(targetPosition);
+            }
         }
     }
 
@@ -26,6 +31,20 @@ public class C_Movement : MonoBehaviour
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
                 yield return null;
+            }
+        }
+    }
+
+    private void CheckForItemAtPosition(Vector2Int position)
+    {
+        if (GameManager.Instance.gridManager.itemPositions.Contains(position))
+        {
+            GameManager.Instance.ItemCollected();
+            GameObject item = GameManager.Instance.gridManager.GetItemGameObjectAtPosition(position);
+            if (item != null)
+            {
+                Destroy(item);
+                GameManager.Instance.gridManager.itemPositions.Remove(position);
             }
         }
     }

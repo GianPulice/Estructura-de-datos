@@ -413,6 +413,8 @@ MonoBehaviour:
   gridManager: {fileID: 1137782062}
   playerController: {fileID: 2100614408}
   initialPlayerPosition: {x: 0, y: 0}
+  totalItems: 5
+  itemsCollected: 0
 --- !u!4 &1480125294
 Transform:
   m_ObjectHideFlags: 0
