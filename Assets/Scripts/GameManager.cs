@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int totalItems; 
     public int itemsCollected;
 
-    private float timer = 120f;
+    private float timer = 60f;
 
     private void Awake()
     {
